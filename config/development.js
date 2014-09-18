@@ -4,13 +4,14 @@ var InMemoryNodeStore = require('../repository/inmemorynodestore')
   , Node = require('../model/node')
   , request = require('request')
   , log4js = require('log4js')
+  , errorHandler = require('errorhandler')
   ;
 
 function setup(app, express) {
 
     log4js.setGlobalLogLevel('DEBUG');
 
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+    app.use(errorHandler({ dumpExceptions: true, showStack: true }));
     app.use(log4js.connectLogger(log4js.getLogger('express.js')));
 
     var nodeStore = new InMemoryNodeStore();

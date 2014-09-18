@@ -1,18 +1,16 @@
-
-
 function setup(app, express) {
 
-  app.configure('development', function() {
+  if ('development' == process.env.NODE_ENV) {
     require("./development.js")(app, express);
-  });
-
-  app.configure('staging', function() {
+  }
+  
+  if ('staging' == process.env.NODE_ENV) {
     require("./staging.js")(app, express);
-  });
-
-  app.configure('production', function() {
+  }
+  
+  if ('production' == process.env.NODE_ENV) {
     require("./production.js")(app, express);
-  });
+  }
 }
 
 module.exports = exports = setup;
