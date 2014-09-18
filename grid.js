@@ -39,6 +39,7 @@ app.use(security({
     { url: /^\/(css|img|js)/, access: 'isAuthenticated()' },
     { url: /^\/admin/, access: 'hasRole("admin")' },
     { url: /^\/api/, access: 'isAuthenticated()' },
+    { url: /^\/grid/, access: 'isAuthenticated()' },
     { url: /^\//, access: 'hasRole("user")' }
   ],
   filters: [

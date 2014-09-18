@@ -1,4 +1,5 @@
 var Node = require('../model/node')
+, Registry = require('../model/registry')
   ;
 
 var LOGGER = require('log4js').getLogger('grid.js');
@@ -24,7 +25,7 @@ function registerNode(req, res) {
 
 function retrieveHubStatus(req, res) {
     LOGGER.debug('retrieveHubStatus');
-    res.send({success: true});
+    res.send(Registry.getHubConfiguration());
 }
 
 function retrieveNodeStatus(req, res) {
@@ -34,8 +35,7 @@ function retrieveNodeStatus(req, res) {
         var node = nodeStore.findNodeById(id);
         if (node == null) {
             res.send({
-                'msg': 'Cannot find node with ID = ' + id + ' in the registry.',
-                'success': false
+                'msg': 'Cannot find proxy with ID=' + id + ' in the registry.', 'success': false
             });
         } else {
             node.clearError();
