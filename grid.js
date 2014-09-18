@@ -44,23 +44,7 @@ app.use(security({
   filters: [
     new BasicAuthenticationFilter({
       userProvider : new InMemoryUserProvider({
-        users: {
-        'framework': {
-            username : 'framework',
-            password : 'password',
-            roles : [ 'user' ]
-        },
-        'node': {
-            username : 'node',
-            password : 'password',
-            roles : [ 'user' ]
-        },
-        'admin': {
-            username : 'admin',
-            password : 'password',
-            roles : [ 'admin' ]
-        }
-    }
+        users: app.get('users')
       })
     })
   ],
